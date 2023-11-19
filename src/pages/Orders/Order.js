@@ -7,7 +7,7 @@ import config from '../../config.json';
 const SERVER_URL = config.SERVER_URL;
 
 const Order = ({ order, onDeleteOrder }) => {
-  const { id, userId, dateCreated } = order;
+  const { id, userId, dateCreated, status } = order;
 
   const handleDeleteOrder = () => {
     axios.delete(`${SERVER_URL}/orders/${id}`)
@@ -24,8 +24,9 @@ const Order = ({ order, onDeleteOrder }) => {
       <h2>Order ID: {id}</h2>
       <p>User ID: {userId}</p>
       <p>Date Created: {dateCreated}</p>
+      <p>Status: {status}</p>
       <div className="order-buttons">
-        <button>View Details</button>
+      {status === 'INPROGRESS' && <button>Continue Order</button>}
         <button onClick={handleDeleteOrder}>Delete Order</button>
       </div>
     </div>

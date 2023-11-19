@@ -42,6 +42,10 @@ const Orders = () => {
     setOrders((prevOrders) => prevOrders.filter(order => order.id !== orderId));
   };
 
+  const handleCreateOrder = (orderId) => {
+   // setOrders((prevOrders) => prevOrders.filter(order => order.id !== orderId));
+  };
+
   return (
     <div>
       <h1>Orders</h1>

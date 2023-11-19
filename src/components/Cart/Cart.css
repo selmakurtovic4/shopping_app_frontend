@@ -1,0 +1,30 @@
+/* Cart.css */
+
+.cart-container {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 300px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .cart-header {
+    margin-bottom: 10px;
+  }
+  
+  .cart-footer {
+    margin-top: auto;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .cart-container.hidden {
+    transform: translateY(100%);
+  }
+  

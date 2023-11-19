@@ -21,13 +21,23 @@ const User = ({ user, onDeleteUser }) => {
   const handleGetOrders = (userId) => {
     window.location.href = `/orders/${userId}`;
   };
-  
+ 
+
+  const handleCreateOrder= (userId) =>{
+    const orderData = {
+      userId: userId,
+      status: 'INPROGRESS', 
+    };
+    axios.post(`${SERVER_URL}/orders`,orderData)
+    
+    window.location.href = `/createOrder/${userId}`;
+  }
       
   return (
     <div className="user-container">
       <h2>{`${firstName} ${lastName}`}</h2>
       <div className="user-buttons">
-        <button>Create New Order</button>
+        <button onClick={()=>handleCreateOrder(id)}>Create New Order</button>
         <button onClick={() => handleGetOrders(id)}>See Previous Orders</button>
         <button onClick={handleDeleteUser}>Delete User</button>
       </div>
