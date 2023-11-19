@@ -43,7 +43,7 @@ const Orders = () => {
   };
 
   const handleCreateOrder = (orderId) => {
-   // setOrders((prevOrders) => prevOrders.filter(order => order.id !== orderId));
+    setOrders((prevOrders) => prevOrders.filter(order => order.id !== orderId));
   };
 
   return (

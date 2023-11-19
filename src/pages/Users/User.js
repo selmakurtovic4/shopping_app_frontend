@@ -1,4 +1,3 @@
-// User.js
 import React from 'react';
 import './User.css';
 import axios from 'axios';
@@ -22,16 +21,32 @@ const User = ({ user, onDeleteUser }) => {
     window.location.href = `/orders/${userId}`;
   };
  
+  const handleCreateOrder = async (userId) => {
+    try {
+      //console.log(userId);
+      const orderData = {
+        userId: userId,
+        status: 'INPROGRESS',
+        dateCreated: new Date(),
+      };
+      console.log(orderData);
+      const response = await axios.post(`${SERVER_URL}/orders/`, orderData);
 
-  const handleCreateOrder= (userId) =>{
-    const orderData = {
-      userId: userId,
-      status: 'INPROGRESS', 
-    };
-    axios.post(`${SERVER_URL}/orders`,orderData)
-    
-    window.location.href = `/createOrder/${userId}`;
-  }
+      if (response.status === 200) {
+        const orderId = response.data.data; // Assuming the order ID is in the response
+      //  setActiveOrder(orderId);
+      console.log(orderId);
+      window.location.href = `/products/${orderId}`;
+
+      } else {
+        console.error('Invalid response status:', response.status);
+      }
+    } catch (error) {
+      console.error('Error creating order:', error);
+    }
+  };
+  
+  
       
   return (
     <div className="user-container">

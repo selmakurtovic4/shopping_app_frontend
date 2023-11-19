@@ -34,7 +34,7 @@ const Users = () => {
   return (
     <div>
       <h1>Users</h1>
-      <button className="handleCreateUser" >Create New User </button>
+   
       <ListContainer items={users.map(user => (
         <User
           key={user._id}
