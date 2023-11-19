@@ -18,13 +18,17 @@ const User = ({ user, onDeleteUser }) => {
         console.error('Error deleting user:', error);
       });
   };
-
+  const handleGetOrders = (userId) => {
+    window.location.href = `/orders/${userId}`;
+  };
+  
+      
   return (
     <div className="user-container">
       <h2>{`${firstName} ${lastName}`}</h2>
       <div className="user-buttons">
         <button>Create New Order</button>
-        <button>See Previous Orders</button>
+        <button onClick={() => handleGetOrders(id)}>See Previous Orders</button>
         <button onClick={handleDeleteUser}>Delete User</button>
       </div>
     </div>
