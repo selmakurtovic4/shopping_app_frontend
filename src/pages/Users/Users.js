@@ -1,12 +1,14 @@
+// Users.js
 import React, { useState, useEffect } from 'react';
 import ListContainer from '../../components/ListContainer/ListContainer';
 import axios from 'axios';
 import config from '../../config.json';
-import User from'./User.js'
+import User from './User';
+
+const SERVER_URL = config.SERVER_URL;
 
 const Users = () => {
   const [users, setUsers] = useState([]);
-  const SERVER_URL = config.SERVER_URL;
 
   useEffect(() => {
     axios.get(`${SERVER_URL}/user`)
@@ -23,19 +25,24 @@ const Users = () => {
       });
   }, []);
 
+  const handleDeleteUser = (userId) => {
+
+    setUsers((prevUsers) => prevUsers.filter(user => user.id !== userId));
+  };
+
+ 
   return (
-<div>
+    <div>
       <h1>Users</h1>
-      <button>Create New User</button>
+      <button className="handleCreateUser" >Create New User </button>
       <ListContainer items={users.map(user => (
         <User
-          key={user.id}
+          key={user._id}
           user={user}
-        
+          onDeleteUser={handleDeleteUser}
         />
       ))} />
     </div>
-
   );
 };
 
